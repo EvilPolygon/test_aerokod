@@ -5,6 +5,7 @@ import {useDispatch} from 'react-redux';
 import {useAppSelector} from '@store/hooks';
 
 import {parseFROMTimestamp} from '@utils/timeParsers';
+import {Button} from '@sharedComponents'
 
 export default function TaskItem ({task}) {
   const dispatch = useDispatch<AppDispatch>();
@@ -30,27 +31,38 @@ export default function TaskItem ({task}) {
   }
 
   return (
-    <div>
-      {task.id}
-      {task.title}
-      {task.description}
-      {parseFROMTimestamp(task.timeLeft)}
+    <div className={'border border-slate-200 bg-white shadow-sm m-[8px] p-[8px]'}>
+      <div>
+        {task.title}
+      </div>
+      <div>
+        {task.description}
+      </div>
+      <div>
+        <span>{'Оставшееся время: '}</span>
+        <span>{parseFROMTimestamp(task.timeLeft)}</span>
+        {task.timeLeft < 0 && (
+          <span className={'bg-red-300 ml-[8px]'}>{'Просрочена'}</span>
+        )}
+      </div>
 
-      <button 
-        className={'bg-lime-200'}
+      <div className={'flex justify-between'}>
+      <Button 
+        color={'lime'}
         onClick={() => trackHandler(task.id)}
       >
         {
           curentTaskIsTracking ? 'Остановить' : 'Выполнять'
         }
-      </button>
+      </Button>
 
-      <button 
-        className={'bg-red-100'} 
+      <Button 
+        color={'danger'}
         onClick={() => deleteThisTask(task.id)}
       >
-        Удалить задачу
-      </button>
+        {'Удалить задачу'}
+      </Button>
+      </div>
     </div>
   )
 }

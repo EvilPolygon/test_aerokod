@@ -1,10 +1,8 @@
 'use client'
 import {useState} from 'react';
 
-import {AppDispatch} from '@store/store';
-import {useDispatch} from 'react-redux';
 import {useAppSelector} from '@store/hooks';
-import {TaskItem, Modal} from '@sharedComponents';
+import {TaskItem, Modal, Input, Button} from '@sharedComponents';
 
 import type {Task} from '@store/features/todoSlice';
 
@@ -15,6 +13,13 @@ export default function TrackerList () {
   const [search, setSearch] = useState('');
 
   const tasks = useAppSelector((state) => state.todoReducer.tasks)
+
+  const changeHandler = (e) => {
+    setSearch(e.target.value);
+  }
+  const openModalHandler = () => {
+    setModalOpen(true)
+  }
   
   const getTaskItems = () => {
     let tasksForShow = tasks;
@@ -35,11 +40,13 @@ export default function TrackerList () {
 
   return (
     <>
-      <div>
-        <span>{'Текущие задачи'}</span>
-        <span>{'Поиск по заголовку'}</span>
-        <input type={'text'} onChange={(e) => setSearch(e.target.value)}/>
-        <button className={'bg-lime-100'} onClick={() => setModalOpen(true)}>Создать задачу</button>
+      <div className={'p-[32px]'}>
+        <div className={'flex items-center gap-[16px]'}>
+          <span className={'grow'}>{'Текущие задачи'}</span>
+          <span>{'Поиск по заголовку'}</span>
+          <Input onChange={changeHandler}/>
+          <Button color={'blue'} onClick={openModalHandler}>Создать задачу</Button>
+        </div>
         <div>
           {getTaskItems()}
         </div>

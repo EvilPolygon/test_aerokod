@@ -13,8 +13,8 @@ export const initialStoreData = {
     {
       id: 2,
       title: 'Feed a cats',
-      description: 'Some infinity hungry creatures wanna food',
-      timeLeft: 14200,
+      description: 'У вас есть ПЯТЬ секунд что бы покормить этих вечно голодных обжор',
+      timeLeft: 5000,
     },
     {
       id: 3,

@@ -25,7 +25,6 @@ export const todo = createSlice({
     deleteTask: (state, action: PayloadAction<number>) => {
       const taskForDelete = state.tasks.map(item => item.id).indexOf(action.payload)
       state.tasks.splice(taskForDelete, 1)
-      console.log(taskForDelete)
     },
     createTask: (state, action: PayloadAction<CreateTaskData>) => {
       state.tasks.push(
@@ -46,8 +45,6 @@ export const todo = createSlice({
       const timeEnd = Date.now();
       const idTask = state.tasks.map(item => item.id).indexOf(state.timeTracker.currentTaskId);
       state.tasks[idTask].timeLeft = state.tasks[idTask].timeLeft - (timeEnd - state.timeTracker.timeStarted);
-
-      console.log(state.tasks[idTask].timeLeft)
 
       state.timeTracker.currentTaskId = -1;
     }

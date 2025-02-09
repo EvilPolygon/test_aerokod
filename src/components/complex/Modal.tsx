@@ -1,5 +1,6 @@
 'use client'
 import {useState} from "react"
+import {Input, Button} from '@sharedComponents'
 
 import {createTask} from '@store/features/todoSlice';
 import {AppDispatch} from '@store/store';
@@ -13,27 +14,50 @@ export default function Modal ({setModalOpen}) {
       dispatch(createTask(newTaskData));
     }
 
+  const inputHandler = (e) => {
+    setNewTaskData(
+      {
+        ...newTaskData,
+        [e.target.name]: e.target.value
+      }
+    )
+  }
+
+  const closeModalHandler = () => {
+    setModalOpen(false)
+  }
+
+  const createTaskHandler = () => {
+    createNewTask(newTaskData);
+    setModalOpen(false)
+  }
+
   return (
-    <div className={'bg-blue-100'}>
+    <div className={'flex gap-[8px] items-start flex-col border border-slate-200 shadow-sm m-[8px] p-[8px] bg-blue-100'}>
       <div>
-        <span>{'Название'}</span>
-        <input type={'text'} onChange={(e) => setNewTaskData({...newTaskData, title: e.target.value})} />
+        <span className={'mr-[8px]'}>{'Название'}</span>
+        <Input name={'title'} onChange={inputHandler} />
+      </div>
+      <div className={'flex'}>
+        <span className={'mr-[8px]'}>{'Описание'}</span>
+        <textarea
+          className={'bg-white text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow'}
+          onChange={(e) => setNewTaskData({...newTaskData, description: e.target.value})} 
+        />
       </div>
       <div>
-        <span>{'Описание'}</span>
-        <textarea onChange={(e) => setNewTaskData({...newTaskData, description: e.target.value})} />
-      </div>
-      <div>
-        <span>{'Время на выполнение'}</span>
+        <span className={'mr-[8px]'}>{'Время на выполнение'}</span>
         <div>
-        <span>{'ч'}</span>
-        <input type={'text'} onChange={(e) => setNewTaskData({...newTaskData, hours: e.target.value})} />
-        <span>{'м'}</span>
-        <input type={'text'} onChange={(e) => setNewTaskData({...newTaskData, minutes: e.target.value})} />
+          <span className={'mr-[8px]'}>{'ч'}</span>
+          <Input name={'hours'} onChange={inputHandler} />
+          <span className={'mx-[8px]'}>{'м'}</span>
+          <Input name={'minutes'} onChange={inputHandler} />
         </div>
       </div>
-      <button onClick={() =>createNewTask(newTaskData)}>{'Создать'}</button>
-      <button onClick={() => setModalOpen(false)}>Закрыть</button>
+      <div className={'flex gap-[16px]'}>
+        <Button onClick={createTaskHandler}>{'Создать'}</Button>
+        <Button color={'danger'} onClick={closeModalHandler}>{'Закрыть'}</Button>
+      </div>
     </div>
   )
 }
