@@ -1,7 +1,7 @@
 const HOUR_IN_TIMESTAMP = 1000 * 60 * 60;
 const MINUTE_IN_TIMESTAMP = 1000 * 60;
 
-export function parseTOTimestamp (hours: number, minutes: number) {
+export function parseTOTimestamp (hours: number = 0, minutes: number = 0) {
   return hours * HOUR_IN_TIMESTAMP + minutes * MINUTE_IN_TIMESTAMP;
 }
 

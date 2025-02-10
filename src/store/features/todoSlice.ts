@@ -7,6 +7,7 @@ type Task = {
   title: string,
   description: string,
   timeLeft: number,
+  timeSpend: number
 }
 
 type CreateTaskData = {
@@ -32,7 +33,8 @@ export const todo = createSlice({
           id: nextId,
           title: action.payload.title,
           description: action.payload.description,
-          timeLeft: parseTOTimestamp(action.payload.hours, action.payload.minutes)
+          timeLeft: parseTOTimestamp(action.payload.hours, action.payload.minutes),
+          timeSpend: 0
         }
       )
       nextId += 1;
@@ -45,6 +47,7 @@ export const todo = createSlice({
       const timeEnd = Date.now();
       const idTask = state.tasks.map(item => item.id).indexOf(state.timeTracker.currentTaskId);
       state.tasks[idTask].timeLeft = state.tasks[idTask].timeLeft - (timeEnd - state.timeTracker.timeStarted);
+      state.tasks[idTask].timeSpend = timeEnd - state.timeTracker.timeStarted;
 
       state.timeTracker.currentTaskId = -1;
     }

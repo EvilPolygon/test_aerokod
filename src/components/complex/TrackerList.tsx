@@ -25,7 +25,9 @@ export default function TrackerList () {
     let tasksForShow = tasks;
 
     if (search !== '') {
-      tasksForShow = tasksForShow.filter((item) => item.title.includes(search));
+      tasksForShow = tasksForShow.filter((item) => 
+        item.title.toLowerCase().includes(search) || 
+        item.description.toLowerCase().includes(search));
     }
 
     return tasksForShow.map((item: Task) => {

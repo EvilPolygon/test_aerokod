@@ -23,7 +23,6 @@ export default function TaskItem ({task}) {
       if(curentTaskIsTracking) {
         return dispatch(stopTrack())
       } 
-      // выести что задача уже выполняется
       console.log('denied')
       return ;
     }
@@ -37,6 +36,10 @@ export default function TaskItem ({task}) {
       </div>
       <div>
         {task.description}
+      </div>
+      <div>
+        <span>{'Затрачено времени: '}</span>
+        <span>{parseFROMTimestamp(task.timeSpend)}</span>
       </div>
       <div>
         <span>{'Оставшееся время: '}</span>
