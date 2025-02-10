@@ -45,7 +45,7 @@ export default function TrackerList () {
       <div className={'p-[32px]'}>
         <div className={'flex items-center gap-[16px]'}>
           <span className={'grow'}>{'Текущие задачи'}</span>
-          <span>{'Поиск по заголовку'}</span>
+          <span>{'Поиск'}</span>
           <Input onChange={changeHandler}/>
           <Button color={'blue'} onClick={openModalHandler}>Создать задачу</Button>
         </div>
