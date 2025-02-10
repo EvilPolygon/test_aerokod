@@ -26,4 +26,4 @@ export const initialStoreData = {
       timeSpend: 0
     },
   ]
-}
+};

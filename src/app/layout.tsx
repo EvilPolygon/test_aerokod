@@ -3,15 +3,15 @@ import './globals.css';
 
 import type {Metadata} from 'next';
 import StoreProvider from '@store/StoreProvider';
- 
+
 const dejaVuFont = localFont({
   src: '../public/fonts/DejaVuSans.ttf',
-})
+});
 
 export const metadata: Metadata = {
   title: 'Time tracker todo test'
-}
- 
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -25,5 +25,5 @@ export default function RootLayout({
         </StoreProvider>
       </body>
     </html>
-  )
+  );
 }

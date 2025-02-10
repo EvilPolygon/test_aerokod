@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {initialStoreData} from './mockData'
+import {initialStoreData} from './mockData';
 import {parseTOTimestamp} from "@utils/timeParsers";
 
 type Task = {
@@ -24,8 +24,8 @@ export const todo = createSlice({
   initialState: initialStoreData,
   reducers: {
     deleteTask: (state, action: PayloadAction<number>) => {
-      const taskForDelete = state.tasks.map(item => item.id).indexOf(action.payload)
-      state.tasks.splice(taskForDelete, 1)
+      const taskForDelete = state.tasks.map(item => item.id).indexOf(action.payload);
+      state.tasks.splice(taskForDelete, 1);
     },
     createTask: (state, action: PayloadAction<CreateTaskData>) => {
       state.tasks.push(
@@ -36,7 +36,7 @@ export const todo = createSlice({
           timeLeft: parseTOTimestamp(action.payload.hours, action.payload.minutes),
           timeSpend: 0
         }
-      )
+      );
       nextId += 1;
     },
     startTrack: (state, action: PayloadAction<number>) => {
@@ -52,7 +52,7 @@ export const todo = createSlice({
       state.timeTracker.currentTaskId = -1;
     }
   }
-})
+});
 
 export type {Task};
 

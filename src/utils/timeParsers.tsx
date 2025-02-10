@@ -8,6 +8,6 @@ export function parseTOTimestamp (hours: number = 0, minutes: number = 0) {
 export function parseFROMTimestamp (timeLeft: number) {
   const hours = Math.trunc(timeLeft / HOUR_IN_TIMESTAMP);
   const minutes = Math.trunc((timeLeft - hours * HOUR_IN_TIMESTAMP) / MINUTE_IN_TIMESTAMP);
-  
-  return <span>{`${hours} ч, ${minutes} м`}</span>
+
+  return <span>{`${hours} ч, ${minutes} м`}</span>;
 }

@@ -1,6 +1,6 @@
-'use client'
-import {useState} from "react"
-import {Input, Button} from '@sharedComponents'
+'use client';
+import {useState} from "react";
+import {Input, Button} from '@sharedComponents';
 
 import {createTask} from '@store/features/todoSlice';
 import {AppDispatch} from '@store/store';
@@ -8,11 +8,11 @@ import {useDispatch} from 'react-redux';
 
 export default function Modal ({setModalOpen}) {
   const dispatch = useDispatch<AppDispatch>();
-  const [newTaskData, setNewTaskData] = useState({})
+  const [newTaskData, setNewTaskData] = useState({});
 
   const createNewTask = (newTaskData) => {
       dispatch(createTask(newTaskData));
-    }
+    };
 
   const inputHandler = (e) => {
     setNewTaskData(
@@ -20,17 +20,17 @@ export default function Modal ({setModalOpen}) {
         ...newTaskData,
         [e.target.name]: e.target.value
       }
-    )
-  }
+    );
+  };
 
   const closeModalHandler = () => {
-    setModalOpen(false)
-  }
+    setModalOpen(false);
+  };
 
   const createTaskHandler = () => {
     createNewTask(newTaskData);
-    setModalOpen(false)
-  }
+    setModalOpen(false);
+  };
 
   return (
     <div className={'flex gap-[8px] items-start flex-col border border-slate-200 shadow-sm m-[8px] p-[8px] bg-blue-100'}>
@@ -42,7 +42,7 @@ export default function Modal ({setModalOpen}) {
         <span className={'mr-[8px]'}>{'Описание'}</span>
         <textarea
           className={'bg-white text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow'}
-          onChange={(e) => setNewTaskData({...newTaskData, description: e.target.value})} 
+          onChange={(e) => setNewTaskData({...newTaskData, description: e.target.value})}
         />
       </div>
       <div>
@@ -59,5 +59,5 @@ export default function Modal ({setModalOpen}) {
         <Button color={'danger'} onClick={closeModalHandler}>{'Закрыть'}</Button>
       </div>
     </div>
-  )
+  );
 }

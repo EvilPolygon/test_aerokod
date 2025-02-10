@@ -1,33 +1,38 @@
-'use client'
-import {deleteTask, startTrack, stopTrack} from '@store/features/todoSlice';
+'use client';
+
 import {AppDispatch} from '@store/store';
 import {useDispatch} from 'react-redux';
 import {useAppSelector} from '@store/hooks';
 
 import {parseFROMTimestamp} from '@utils/timeParsers';
-import {Button} from '@sharedComponents'
+import {Button} from '@sharedComponents';
+import {
+  deleteTask,
+  startTrack,
+  stopTrack
+} from '@store/features/todoSlice';
 
 export default function TaskItem ({task}) {
   const dispatch = useDispatch<AppDispatch>();
 
-  const timeTracker = useAppSelector((state) => state.todoReducer.timeTracker)
+  const timeTracker = useAppSelector((state) => state.todoReducer.timeTracker);
 
   const curentTaskIsTracking = timeTracker.currentTaskId === task.id;
-  
+
   const deleteThisTask = (id: number) => {
     dispatch(deleteTask(id));
-  }
+  };
 
   const trackHandler = (id: number) => {
     if (timeTracker.currentTaskId !== -1){
       if(curentTaskIsTracking) {
-        return dispatch(stopTrack())
-      } 
-      console.log('denied')
+        return dispatch(stopTrack());
+      }
+      console.log('denied');
       return ;
     }
-    return dispatch(startTrack(id))
-  }
+    return dispatch(startTrack(id));
+  };
 
   return (
     <div className={'border border-slate-200 bg-white shadow-sm m-[8px] p-[8px]'}>
@@ -50,7 +55,7 @@ export default function TaskItem ({task}) {
       </div>
 
       <div className={'flex justify-between'}>
-      <Button 
+      <Button
         color={'lime'}
         onClick={() => trackHandler(task.id)}
       >
@@ -59,7 +64,7 @@ export default function TaskItem ({task}) {
         }
       </Button>
 
-      <Button 
+      <Button
         color={'danger'}
         onClick={() => deleteThisTask(task.id)}
       >
@@ -67,5 +72,5 @@ export default function TaskItem ({task}) {
       </Button>
       </div>
     </div>
-  )
+  );
 }

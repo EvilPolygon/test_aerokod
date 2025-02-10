@@ -1,33 +1,37 @@
-'use client'
+'use client';
 import {useState} from 'react';
-
 import {useAppSelector} from '@store/hooks';
-import {TaskItem, Modal, Input, Button} from '@sharedComponents';
+import {
+  TaskItem,
+  Modal,
+  Input,
+  Button
+} from '@sharedComponents';
 
 import type {Task} from '@store/features/todoSlice';
-
 
 export default function TrackerList () {
 
   const [modalOpen, setModalOpen] = useState(false);
   const [search, setSearch] = useState('');
 
-  const tasks = useAppSelector((state) => state.todoReducer.tasks)
+  const tasks = useAppSelector((state) => state.todoReducer.tasks);
 
   const changeHandler = (e) => {
     setSearch(e.target.value);
-  }
+  };
   const openModalHandler = () => {
-    setModalOpen(true)
-  }
-  
+    setModalOpen(true);
+  };
+
   const getTaskItems = () => {
     let tasksForShow = tasks;
 
     if (search !== '') {
-      tasksForShow = tasksForShow.filter((item) => 
-        item.title.toLowerCase().includes(search) || 
-        item.description.toLowerCase().includes(search));
+      const searchLowerCase = search.toLowerCase();
+      tasksForShow = tasksForShow.filter((item) =>
+        item.title.toLowerCase().includes(searchLowerCase) ||
+        item.description.toLowerCase().includes(searchLowerCase));
     }
 
     return tasksForShow.map((item: Task) => {
@@ -36,9 +40,9 @@ export default function TrackerList () {
           key={item.id}
           task={item}
         />
-      )
-    })
-  }
+      );
+    });
+  };
 
   return (
     <>
@@ -54,12 +58,12 @@ export default function TrackerList () {
         </div>
         {
           modalOpen && (
-            <Modal 
+            <Modal
               setModalOpen={setModalOpen}
             />
           )
         }
       </div>
     </>
-  )
+  );
 }

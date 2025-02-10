@@ -1,5 +1,4 @@
-'useClient'
-import React from "react"
+'useClient';
 
 export default function Input({name='', onChange}) {
   return (
@@ -9,5 +8,5 @@ export default function Input({name='', onChange}) {
     type='text'
     className={" bg-white text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"}
   />
-  )
+  );
 }

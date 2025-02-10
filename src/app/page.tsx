@@ -1,9 +1,6 @@
-"use client"
+"use client";
 
-import {Header, TrackerList} from '@sharedComponents'
-import {AppDispatch} from '@store/store';
-import {useDispatch} from 'react-redux';
-import {useAppSelector} from '@store/hooks';
+import {Header, TrackerList} from '@sharedComponents';
 
 export default function Page() {
   return (
@@ -11,5 +8,5 @@ export default function Page() {
       <Header />
       <TrackerList />
     </>
-  )
+  );
 }

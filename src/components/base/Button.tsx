@@ -1,5 +1,4 @@
-'useClient'
-import React from "react"
+'useClient';
 
 export default function Button({color = 'default', onClick, children}) {
   const buttonColor = {
@@ -16,5 +15,5 @@ export default function Button({color = 'default', onClick, children}) {
   >
     {children}
   </button>
-  )
+  );
 }
