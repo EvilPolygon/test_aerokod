@@ -31,8 +31,8 @@ export const todo = createSlice({
       state.tasks.push(
         {
           id: nextId,
-          title: action.payload.title,
-          description: action.payload.description,
+          title: action.payload.title || 'no title',
+          description: action.payload.description || 'no description',
           timeLeft: parseTOTimestamp(action.payload.hours, action.payload.minutes),
           timeSpend: 0
         }

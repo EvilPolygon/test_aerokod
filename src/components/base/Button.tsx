@@ -1,6 +1,12 @@
 'useClient';
 
-export default function Button({color = 'default', onClick, children}) {
+export default function Button(
+  {
+    color = 'default',
+    onClick,
+    children
+  }
+) {
   const buttonColor = {
     danger: 'bg-red-200 hover:bg-red-300',
     blue: 'bg-blue-100 hover:bg-blue-200',
