@@ -1,20 +1,31 @@
 'use client';
-import {useState} from "react";
+import React, {useState} from "react";
 import {Input, Button} from '@sharedComponents';
 
 import {createTask} from '@store/features/todoSlice';
 import {AppDispatch} from '@store/store';
 import {useDispatch} from 'react-redux';
 
-export default function Modal ({setModalOpen}) {
+type NewTaskData = {
+  title: string,
+  description: string,
+  hours: number,
+  minutes: number
+}
+
+export default function Modal ({
+  setModalOpen
+  } : {
+  setModalOpen: (x: boolean) => void
+}) {
   const dispatch = useDispatch<AppDispatch>();
   const [newTaskData, setNewTaskData] = useState({});
 
-  const createNewTask = (newTaskData) => {
+  const createNewTask = (newTaskData: NewTaskData) => {
       dispatch(createTask(newTaskData));
     };
 
-  const inputHandler = (e) => {
+  const inputHandler = (e: Event & {target: HTMLInputElement}) => {
     setNewTaskData(
       {
         ...newTaskData,
@@ -28,7 +39,7 @@ export default function Modal ({setModalOpen}) {
   };
 
   const createTaskHandler = () => {
-    createNewTask(newTaskData);
+    createNewTask(newTaskData as NewTaskData);
     setModalOpen(false);
   };
 
