@@ -2,8 +2,8 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {initialStoreData} from './mockData';
 import {parseTOTimestamp} from "@utils/timeParsers";
 
-type Task = {
-  id: number,
+interface Task {
+  readonly id: number,
   title: string,
   description: string,
   timeLeft: number,
