@@ -1,4 +1,4 @@
-[ссылка на хостинг](https://www.example.com)
+[ссылка на хостинг](https://test-aerokod.vercel.app/)
 
 ### как запустить
 
